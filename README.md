@@ -1,16 +1,55 @@
-# React + Vite
+# Cuff & Fit
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+A demo storefront for Cuff & Fit, "Style that fits you": tailored full and half sleeve shirts for men, and co-ords, dresses and tops for women. 50 pieces from ₹999 to ₹3,499.
 
-Currently, two official plugins are available:
+## Run it
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+```bash
+npm install
+npm run dev
+```
 
-## React Compiler
+Build with `npm run build`, then preview with `npm run preview`.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## What works
 
-## Expanding the Oxlint configuration
+- **Home:**
+  - A giant CUFF & FIT hero with a group of three in front.
+  - Swipe (or drag) to change the group; hover a person to see what they are wearing.
+  - Shop by collection and best sellers.
+  - A side column with:
+    - new collection
+    - promises
+    - a limited offer
+    - customer reviews
+    - newsletter
+  - A strip of type.
+  - Shade studio: drag along twelve colours of the signature shirt, pick a size and add it to the bag.
+  - The women's edit, coupon codes and an Instagram wall.
+- **Shop:**
+  - Men / Women pills.
+  - Categories: Full sleeve, Half sleeve, Co-ords, Dresses, Tops.
+  - Filters in the URL: fabric, shop for, colour, price.
+  - Sort, and search with suggestions.
+- **Product page:**
+  - Gallery with zoom (two or three views per piece).
+  - Colour siblings, sizes (S to XXL men, XS to XL women) and a size guide.
+  - Pincode check, reviews, related and recently viewed.
+- **Bag:**
+  - Drawer and full page, with free shipping over ₹1,499.
+  - Coupons:
+    - `FIT10`
+    - `CUFF250` (₹2,499+)
+    - `PAIRUP` (₹4,499+)
+- **Checkout:**
+  - Address with pincode autofill, then UPI, card, net banking or COD (₹49).
+  - Order confirmation and order history on this device.
+- **Also:** wishlist, account, help/FAQ, about us, a 404 page and an error page.
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and Oxlint's TypeScript related rules in your project.
+All data is local (`src/data`). The cart, wishlist and orders are saved in localStorage. No real payment is taken. Reviews and customer notes are sample content.
+
+## Stack
+
+- Vite, React 19, React Router 7 and Tailwind CSS v4
+- Motion, Lenis and Phosphor icons
+- Outfit and Manrope fonts
