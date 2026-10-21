@@ -1,21 +1,20 @@
 import { useEffect, useState } from 'react'
 import { Link } from 'react-router'
 import { AnimatePresence, motion, useReducedMotion } from 'motion/react'
-import { heroSets, cutout, socials } from '../../data/content'
+import { heroSets, cutout } from '../../data/content'
 import { getProductSync } from '../../services/catalog'
 import { formatPrice } from '../../lib/format'
 import { Icon } from '../../components/ui/Icon'
 import { cn } from '../../lib/cn'
 
 const AUTO = 7000
-const WORD_A = ['C', 'U', 'F', 'F']
-const WORD_B = ['F', 'I', 'T']
 
 // Placement of the three figures: the outer two stand tall, the middle one a step lower.
+// Heights are a share of the people layer, which sits at the foot of the panel.
 const SLOTS = [
-  { left: '4%', height: '118%', z: 2 },
-  { left: '34%', height: '104%', z: 3 },
-  { left: '61%', height: '118%', z: 1 },
+  { left: '4%', height: '112%', z: 2 },
+  { left: '34%', height: '99%', z: 3 },
+  { left: '61%', height: '112%', z: 1 },
 ]
 
 /** One figure: a cut-out photo whose head rises over the brand name. Hover shows the piece. */
@@ -73,8 +72,8 @@ function Person({ person, slot, index, dir, active, onHover }) {
 }
 
 /**
- * Hero in the inspo's manner: the brand name set enormous, and a group of three standing in
- * front of a sand panel, their heads rising over the letters. "Swipe" (or a drag across the
+ * Hero: a short headline, then a group of three standing in a sand panel with room above
+ * their heads. "Swipe" (or a drag across the
  * panel) sends the group off to the left and brings the next one in; it also turns on a
  * timer until the visitor takes over. Hovering a figure dims the others and names the piece.
  */
@@ -100,50 +99,26 @@ export function HeroGroup() {
 
   return (
     <section aria-labelledby="hero-title" className="pt-6 lg:pt-8">
-      <p className="caps text-right text-[10.5px] text-ink sm:text-[12px]">The best shirts are only here</p>
+      <div className="flex flex-wrap items-end justify-between gap-x-8 gap-y-3">
+        <h1 id="hero-title" className="display text-[34px] leading-[1.02] sm:text-[48px] lg:text-[56px]">
+          Shirts cut close,
+          <span className="hand block">cuffs fastened just so</span>
+        </h1>
+        <p className="caps pb-2 text-[10.5px] text-ink sm:text-[12px]">The best shirts are only here</p>
+      </div>
 
-      <h1 id="hero-title" className="relative mt-2 flex items-center justify-center text-[clamp(64px,16.5vw,184px)] leading-[0.82] font-extrabold tracking-[-0.03em] text-ink uppercase select-none sm:justify-between" style={{ fontFamily: 'var(--font-display)' }}>
-        <span className="sr-only">Cuff &amp; Fit: style that fits you</span>
-        <span aria-hidden="true" className="flex">
-          {WORD_A.map((ch, i) => (
-            <span key={i} className="inline-block overflow-hidden pt-[0.04em]">
-              <span className="hero-letter inline-block" style={{ '--i': i }}>
-                {ch}
-              </span>
-            </span>
-          ))}
-        </span>
-        <motion.span
-          aria-hidden="true"
-          className="amp mx-[0.04em] h-[0.92em] text-gold"
-          initial={reduce ? false : { rotate: -24, scale: 0.6, opacity: 0 }}
-          animate={{ rotate: 0, scale: 1, opacity: 1 }}
-          transition={{ type: 'spring', duration: 1.1, bounce: 0.35, delay: 0.45 }}
-          whileHover={reduce ? undefined : { rotate: -10 }}
-        />
-        <span aria-hidden="true" className="flex">
-          {WORD_B.map((ch, i) => (
-            <span key={i} className="inline-block overflow-hidden pt-[0.04em]">
-              <span className="hero-letter inline-block" style={{ '--i': i + 5 }}>
-                {ch}
-              </span>
-            </span>
-          ))}
-        </span>
-      </h1>
-
-      {/* The stage: a sand panel, the group in front, heads over the name */}
-      <div className="relative mt-[-9%] sm:mt-[-7%]">
+      {/* The stage: a sand panel with the group standing in it, heads clear of the top */}
+      <div className="relative mt-6 lg:mt-8">
         <motion.div
-          className="relative aspect-[16/11] touch-pan-y overflow-x-clip sm:aspect-[16/10]"
+          className="relative aspect-[16/12] touch-pan-y overflow-hidden rounded-[16px] sm:aspect-[16/10]"
           onPanEnd={(_, info) => {
             if (Math.abs(info.offset.x) > 60 || Math.abs(info.velocity.x) > 400) go(info.offset.x < 0 ? 1 : -1)
           }}
         >
-          <div className="absolute inset-x-0 top-[22%] bottom-0 overflow-hidden rounded-[16px] bg-sand">
+          <div className="absolute inset-0 overflow-hidden rounded-[16px] bg-sand">
             <span aria-hidden="true" className="amp absolute -right-[4%] -bottom-[18%] h-[90%] text-gold/25" />
           </div>
-          <div className="absolute inset-x-0 bottom-0 aspect-[16/7.8]">
+          <div className="absolute inset-x-0 bottom-0 aspect-[16/8.2]">
             <AnimatePresence initial={false} custom={dir}>
               <motion.div key={set.id} className="absolute inset-0">
                 {set.people.map((p, i) => (
@@ -179,15 +154,6 @@ export function HeroGroup() {
         </div>
       </div>
 
-      <ul className="mt-6 flex justify-between gap-x-4 sm:justify-around">
-        {socials.map((s) => (
-          <li key={s.label}>
-            <a href={s.href} target="_blank" rel="noreferrer" className="caps link-line text-[9.5px] text-ink sm:text-[11px]">
-              {s.label}
-            </a>
-          </li>
-        ))}
-      </ul>
     </section>
   )
 }

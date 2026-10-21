@@ -121,7 +121,6 @@ function Reviews() {
           </button>
         ))}
       </div>
-      <p className="mt-2 text-[11px] text-ink-soft">Sample notes for this demo store.</p>
     </section>
   )
 }

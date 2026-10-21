@@ -31,13 +31,6 @@ export const heroSets = [
   },
 ]
 
-export const socials = [
-  { label: 'Instagram', href: 'https://instagram.com' },
-  { label: 'WhatsApp', href: 'https://wa.me/919820004512' },
-  { label: 'Facebook', href: 'https://facebook.com' },
-  { label: 'Pinterest', href: 'https://pinterest.com' },
-]
-
 export const perks = [
   { icon: 'truck', title: 'Free shipping', body: 'On orders above ₹1,499' },
   { icon: 'returns', title: 'Easy 7-day returns', body: 'Free pickup from home' },
@@ -104,13 +97,6 @@ export const testimonials = [
   { name: 'Kabir N.', city: 'Delhi', rating: 5, productId: 'f47', text: 'Cobalt colour is even richer in person. Ordered the lilac next.' },
   { name: 'Meera K.', city: 'Bengaluru', rating: 4, productId: 'f35', text: 'The navy co-ord is my travel outfit now. Soft and it never creases.' },
 ]
-
-export const instagram = {
-  handle: '@cuffandfit',
-  tag: '#StyleThatFitsYou',
-  href: 'https://instagram.com',
-  images: ['f14-2', 'f17-1', 'f43-1', 'f33-1', 'f10-1', 'f21-1'],
-}
 
 export const offers = [
   { title: '10% off your first order', code: 'FIT10' },
